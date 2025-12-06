@@ -22,7 +22,7 @@ jobs:
 
       - name: Run linter
         run: flake8 calculator.py test_calculator.py --max-line-length=100
-        
+
   test:
     needs: lint
     runs-on: ${{ matrix.os }}
@@ -75,13 +75,13 @@ jobs:
           path: .coverage
 
   deploy:
-  name: Deploy to Production
-  needs: [lint, test]
-  runs-on: ubuntu-latest
-  if: |
-    github.ref == 'refs/heads/main' &&
-    github.event_name == 'push' &&
-    success()
+    name: Deploy to Production
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    if: |
+      github.ref == 'refs/heads/main' &&
+      github.event_name == 'push' &&
+      success()
   
   steps:
     - name: Simulate deployment
